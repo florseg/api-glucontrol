@@ -8,33 +8,20 @@ require 'Models/User.php';
 
 $app = new \Slim\Slim();
 
+
+
 $app->config('databases', [
     'default' => [
         'driver'    => 'mysql',
         'host'      => 'us-cdbr-iron-east-03.cleardb.net',
-        'database'  => 'heroku_907293980da2c4e',
-        'username'  => 'b0b1728ef96619',
-        'password'  => 'd65a478e',
+        'database'  => 'heroku_8973e8a530181f9',
+        'username'  => 'ba8a53f2c448a1',
+        'password'  => 'a8792ea4',
         'charset'   => 'utf8',
         'collation' => 'utf8_general_ci',
         'prefix'    => ''
     ]
 ]);
-
-
-
-/*$app->config('databases', [
-    'default' => [
-        'driver'    => 'mysql',
-        'host'      => 'localhost',
-        'database'  => 'glucosa',
-        'username'  => 'codipa',
-        'password'  => 'codipa',
-        'charset'   => 'utf8',
-        'collation' => 'utf8_general_ci',
-        'prefix'    => ''
-    ]
-]);*/
 
 
 $app->add(new Zeuxisoo\Laravel\Database\Eloquent\ModelMiddleware);
