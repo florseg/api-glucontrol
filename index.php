@@ -43,7 +43,7 @@ $app->get('/', function () use ($app) {
 
 $app->get('/usuarios', function () use ($app) {
 	$db = $app->db->getConnection();
-	$usuarios = $db->table('usuarios')->select('id', 'name', 'email', 'password')->get();
+	$usuarios = $db->table('usuarios')->select('id', 'name', 'email')->get();
 	$app->render(200,array('data' => $usuarios));
 });
 
