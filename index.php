@@ -1,6 +1,16 @@
 <?php 
+
 require 'vendor/autoload.php';
 require 'Models/User.php';
+
+
+function simple_encrypt($text,$salt){  
+   return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
+}
+ 
+function simple_decrypt($text,$salt){  
+    return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($text), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
+}
 
 $app = new \Slim\Slim();
 
@@ -97,7 +107,7 @@ $app->get('/me', function () use ($app) {
 	
 	$id_user_token = simple_decrypt($token, $app->enc_key);
 
-	$usuario = User::find($id_user_token);
+	$usuario = usuario::find($id_user_token);
 	if(empty($usuario)){
 		$app->render(500,array(
 			'error' => TRUE,
