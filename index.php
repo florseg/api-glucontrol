@@ -105,9 +105,9 @@ $app->get('/me', function () use ($app) {
         ));
 	}
 	
-	$id_user_token = simple_decrypt($token, $app->enc_key);
+	$id_usuario_token = simple_decrypt($token, $app->enc_key);
 
-	$usuario = usuario::find($id_user_token);
+	$usuario = usuario::find($id_usuario_token);
 	if(empty($usuario)){
 		$app->render(500,array(
 			'error' => TRUE,
@@ -120,111 +120,4 @@ $app->get('/me', function () use ($app) {
 
 
 
-
-//logout
-$app->get('/login', function () use ($app) {
-	$db = $app->db->getConnection();
-	$usuarios = $db->table('usuarios')->select('id', 'name')->get();
-
-	$app->render(200,array('data' => $users));
-});
-
-$app->post('/usuarios', function () use ($app) {
-	$input = $app->request->getBody();
-
-	$name = $input['name'];
-	if(empty($name)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'name is required',
-        ));
-	}
-	$password = $input['password'];
-	if(empty($password)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'password is required',
-        ));
-	}
-	$email = $input['email'];
-	if(empty($email)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'email is required',
-        ));
-	}
-	
-    $user = new User();
-    $user->name = $name;
-    $user->password = $password;
-    $user->email = $email;
-    $user->save();
-
-    $app->render(200,array('data' => $user->toArray()));
-});
-
-$app->put('/usuarios/:id', function ($id) use ($app) {
-	$input = $app->request->getBody();
-	
-	$name = $input['name'];
-	if(empty($name)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'name is required',
-        ));
-	}
-	$password = $input['password'];
-	if(empty($password)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'password is required',
-        ));
-	}
-	$email = $input['email'];
-	if(empty($email)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'email is required',
-        ));
-	}
-
-	$user = User::find($id);
-	if(empty($user)){
-		$app->render(404,array(
-			'error' => TRUE,
-            'msg'   => 'user not found',
-        ));
-	}
-    $user->name = $name;
-    $user->password = $password;
-    $user->email = $email;
-    $user->save();
-    $app->render(200,array('data' => $user->toArray()));
-});
-
-$app->get('/usuarios/:id', function ($id) use ($app) {
-	$user = User::find($id);
-	if(empty($user)){
-		$app->render(404,array(
-			'error' => TRUE,
-            'msg'   => 'user not found',
-        ));
-	}
-	$app->render(200,array('data' => $user->toArray()));
-});
-
-$app->delete('/usuarios/:id', function ($id) use ($app) {
-	$user = usuario::find($id);
-	if(empty($user)){
-		$app->render(404,array(
-			'error' => TRUE,
-            'msg'   => 'user not found',
-        ));
-	}
-
-	$user->delete();
-	$app->render(200);
-});
-
-$app->run();
 ?>
