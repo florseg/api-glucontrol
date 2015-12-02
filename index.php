@@ -1,7 +1,5 @@
 <?php 
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(-1);
+
 
 require 'vendor/autoload.php';
 require 'Models/User.php';
@@ -44,8 +42,8 @@ $app->get('/', function () use ($app) {
 
 $app->get('/usuarios', function () use ($app) {
 	$db = $app->db->getConnection();
-	$usuarios = $db->table('usuarios')->select('id', 'name', 'email')->get();
-	$app->render(200,array('data' => $usuarios));
+	$usuario = $db->table('usuarios')->select('id', 'name', 'email')->get();
+	$app->render(200,array('data' => $usuario));
 });
 
 
@@ -69,21 +67,21 @@ $app->post('/login', function () use ($app) {
         ));
 	}
 	$db = $app->db->getConnection();
-	$usuarios = $db->table('usuarios')->select()->where('email', $email)->first();
-	if(empty($user)){
+	$usuario = $db->table('usuarios')->select()->where('email', $email)->first();
+	if(empty($usuario)){
 		$app->render(500,array(
 			'error' => TRUE,
             'msg'   => 'El usuario no existe',
         ));
 	}
-	if($usuarios->password != $password){
+	if($usuario->password != $password){
 		$app->render(500,array(
 			'error' => TRUE,
             'msg'   => 'La password no coincide',
         ));
 	}
 
-	$token = simple_encrypt($usuarios->id, $app->enc_key);
+	$token = simple_encrypt($usuario->id, $app->enc_key);
 
 	$app->render(200,array('token' => $token));
 });
