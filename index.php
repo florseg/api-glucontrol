@@ -99,14 +99,14 @@ $app->get('/me', function () use ($app) {
 	
 	$id_user_token = simple_decrypt($token, $app->enc_key);
 
-	$usuarios = usuarios::find($id_user_token);
+	$usuario = usuario::find($id_user_token);
 	if(empty($usuarios)){
 		$app->render(500,array(
 			'error' => TRUE,
             'msg'   => 'Not logged2',
         ));
 	}
-	$app->render(200,array('data' => $usuarios->toArray()));
+	$app->render(200,array('data' => $usuario->toArray()));
 });
 
 
