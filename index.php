@@ -1,6 +1,4 @@
 <?php 
-
-
 require 'vendor/autoload.php';
 require 'Models/User.php';
 
@@ -42,8 +40,8 @@ $app->get('/', function () use ($app) {
 
 $app->get('/usuarios', function () use ($app) {
 	$db = $app->db->getConnection();
-	$usuario = $db->table('usuarios')->select('id', 'name', 'email')->get();
-	$app->render(200,array('data' => $usuario));
+	$usuarios = $db->table('usuarios')->select('id', 'name', 'email')->get();
+	$app->render(200,array('data' => $usuarios));
 });
 
 
