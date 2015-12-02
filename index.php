@@ -214,7 +214,7 @@ $app->get('/usuarios/:id', function ($id) use ($app) {
 });
 
 $app->delete('/usuarios/:id', function ($id) use ($app) {
-	$user = User::find($id);
+	$user = usuario::find($id);
 	if(empty($user)){
 		$app->render(404,array(
 			'error' => TRUE,
