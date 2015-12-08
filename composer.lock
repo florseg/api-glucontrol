@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9bd935e0fd2795931e92b16b4d93bb28",
-    "content-hash": "5c45f7b02c6f57ae09f4a49e0ddbf06f",
+    "hash": "6b946a4a218ea5e3826520910a89dcff",
+    "content-hash": "ac6b1b2ef7963e53e3a8387bc0d09477",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -136,12 +136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/entomb/slim-json-api.git",
-                "reference": "81955f9214dc25b62d651d85f60f1a2aab7409c4"
+                "reference": "f5db6d1333bfcfbff51afc91c7a7d14294849fb4"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/entomb/slim-json-api/zipball/f5db6d1333bfcfbff51afc91c7a7d14294849fb4",
-                "reference": "81955f9214dc25b62d651d85f60f1a2aab7409c4",
+                "reference": "f5db6d1333bfcfbff51afc91c7a7d14294849fb4",
                 "shasum": ""
             },
             "require": {
@@ -174,7 +174,7 @@
                 "slim",
                 "view"
             ],
-            "time": "2015-08-27 12:09:16"
+            "time": "2015-11-12 12:57:13"
         },
         {
             "name": "illuminate/container",

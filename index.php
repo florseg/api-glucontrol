@@ -42,9 +42,6 @@ $app->options('/(:name+)', function() use ($app) {
 });
 
 $app->get('/', function () use ($app) {
-	echo "IN HOME";
-	die();
-
 	$app->render(200,array('msg' => 'CODIPA'));
 });
 
@@ -119,7 +116,7 @@ $app->get('/me', function () use ($app) {
 	$app->render(200,array('data' => $usuario->toArray()));
 });
 
-
+$app->run();
 
 
 ?>
