@@ -107,7 +107,7 @@ $app->get('/me', function () use ($app) {
 	
 	$id_user_token = simple_decrypt($token, $app->enc_key);
 
-	$usuario = usuario::find($id_user_token);
+	$usuario = User::find($id_user_token);
 	if(empty($usuario)){
 		$app->render(500,array(
 			'error' => TRUE,
