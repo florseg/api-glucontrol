@@ -75,19 +75,23 @@ $app->post('/login', function () use ($app) {
         ));
 	}
 	$db = $app->db->getConnection();
-	$usuario = $db->table('usuarios')->select()->where('email', $email)->first();
-	if(empty($usuario)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'El usuario no existe',
+	
+
+
+	$usuario = (object) $db->table('usuarios')->select()->where('email', $email)->first();
+    if(empty($usuario)){
+        $app->render(500,array(
+            'error' => TRUE,
+            'msg'   => 'user not exist',
         ));
-	}
-	if($usuario->password != $password){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'La password no coincide',
+    }
+
+    if($usuario->password != $password){
+        $app->render(500,array(
+            'error' => TRUE,
+            'msg'   => 'password dont match',
         ));
-	}
+    }
 
 	$token = simple_encrypt($usuario->id, $app->enc_key);
 
