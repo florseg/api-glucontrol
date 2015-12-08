@@ -47,6 +47,8 @@ $app->get('/', function () use ($app) {
 
 //Mostrar
 
+echo 'IN';
+die();
 
 $app->get('/usuarios', function () use ($app) {
 	$db = $app->db->getConnection();
