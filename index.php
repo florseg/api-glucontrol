@@ -42,13 +42,13 @@ $app->options('/(:name+)', function() use ($app) {
 });
 
 $app->get('/', function () use ($app) {
+	echo "IN HOME";
+	die();
+
 	$app->render(200,array('msg' => 'CODIPA'));
 });
 
 //Mostrar
-
-echo 'IN';
-die();
 
 $app->get('/usuarios', function () use ($app) {
 	$db = $app->db->getConnection();
