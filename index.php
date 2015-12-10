@@ -47,7 +47,6 @@ $app->get('/', function () use ($app) {
 
 //Mostrar
 
-
 $app->get('/usuarios', function () use ($app) {
 	$db = $app->db->getConnection();
 	$usuarios = $db->table('usuarios')->select('id', 'name', 'email')->get();
@@ -107,7 +106,7 @@ $app->get('/me', function () use ($app) {
 	
 	$id_user_token = simple_decrypt($token, $app->enc_key);
 
-	$usuario = usuario::find($id_user_token);
+	$usuario = User::find($id_user_token);
 	if(empty($usuario)){
 		$app->render(500,array(
 			'error' => TRUE,
@@ -117,7 +116,7 @@ $app->get('/me', function () use ($app) {
 	$app->render(200,array('data' => $usuario->toArray()));
 });
 
-
+$app->run();
 
 
 ?>
