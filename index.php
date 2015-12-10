@@ -1,5 +1,4 @@
 <?php 
-
 require 'vendor/autoload.php';
 require 'Models/User.php';
 
@@ -74,8 +73,8 @@ $app->post('/login', function () use ($app) {
         ));
 	}
 	$db = $app->db->getConnection();
-	$usuario = $db->table('usuarios')->select()->where('email', $email)->first();
-	if(empty($usuario)){
+	$usuarios = $db->table('usuarios')->select()->where('email', $email)->first();
+	if(empty($usuarios)){
 		$app->render(500,array(
 			'error' => TRUE,
             'msg'   => 'El usuario no existe',
