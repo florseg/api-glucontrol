@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6b946a4a218ea5e3826520910a89dcff",
-    "content-hash": "ac6b1b2ef7963e53e3a8387bc0d09477",
+    "hash": "4fda9fd2e6d39946a9d567650284fe7a",
+    "content-hash": "009146a9a64f8a0d409a6f2e9fbf8c2d",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -511,16 +511,16 @@
         },
         {
             "name": "slim/slim",
-            "version": "2.6.2",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "20a02782f76830b67ae56a5c08eb1f563c351a37"
+                "reference": "e434525b348963457e00fe3d46376ebb70581781"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/20a02782f76830b67ae56a5c08eb1f563c351a37",
-                "reference": "20a02782f76830b67ae56a5c08eb1f563c351a37",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/e434525b348963457e00fe3d46376ebb70581781",
+                "reference": "e434525b348963457e00fe3d46376ebb70581781",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +553,7 @@
                 "rest",
                 "router"
             ],
-            "time": "2015-03-08 18:41:17"
+            "time": "2015-03-02 02:13:34"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -734,6 +734,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^5.6.0"
+    },
     "platform-dev": []
 }
