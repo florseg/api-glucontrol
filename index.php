@@ -80,14 +80,14 @@ $app->post('/login', function () use ($app) {
             'msg'   => 'El usuario no existe',
         ));
 	}
-	if($usuario->password != $password){
+	if($usuarios->password != $password){
 		$app->render(500,array(
 			'error' => TRUE,
             'msg'   => 'La password no coincide',
         ));
 	}
 
-	$token = simple_encrypt($usuario->id, $app->enc_key);
+	$token = simple_encrypt($usuarios->id, $app->enc_key);
 
 	$app->render(200,array('token' => $token));
 });
@@ -112,7 +112,7 @@ $app->get('/me', function () use ($app) {
             'msg'   => 'Not logged2',
         ));
 	}
-	$app->render(200,array('data' => $usuario->toArray()));
+	$app->render(200,array('data' => $usuarios->toArray()));
 });
 
 $app->run();
