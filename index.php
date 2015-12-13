@@ -20,9 +20,9 @@ $app->config('databases', [
     'default' => [
         'driver'    => 'mysql',
         'host'      => 'us-cdbr-iron-east-03.cleardb.net',
-        'database'  => 'heroku_8973e8a530181f9',
-        'username'  => 'ba8a53f2c448a1',
-        'password'  => 'a8792ea4',
+        'database'  => 'heroku_68bdc0a1494ac25',
+        'username'  => 'b54b6cf9bc0015',
+        'password'  => '37780c33',
         'charset'   => 'utf8',
         'collation' => 'utf8_general_ci',
         'prefix'    => ''
