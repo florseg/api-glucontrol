@@ -53,7 +53,7 @@ $app->get('/usuarios', function () use ($app) {
 });
 
 
-//Registrousua 
+//Login 
 
 $app->post('/login', function () use ($app) {
 	$input = $app->request->getBody();
@@ -116,6 +116,50 @@ $app->get('/me', function () use ($app) {
 });
 
 $app->run();
+
+
+//crear
+
+$app->post('/usuarios', function () use ($app) {
+  $input = $app->request->getBody();
+	$name = $input['name'];
+	if(empty($name)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'name is required',
+        ));
+	}
+	$password = $input['password'];
+	if(empty($password)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'password is required',
+        ));
+	}
+	$email = $input['email'];
+	if(empty($email)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'email is required',
+        ));
+	}
+	$tipo = $input['tipo'];
+	if(empty($tipo)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'Tipo is required',
+        ));
+	}
+    $usuarios = new User();
+    $usuarios->name = $name;
+    $usuarios->password = $password;
+    $usuarios->email = $email;
+    $usuarios->tipo = $tipo;
+
+    $usuarios->save();
+    $app->render(200,array('data' => $user->toArray()));
+});
+
 
 
 ?>
