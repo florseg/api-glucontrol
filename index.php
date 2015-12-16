@@ -191,14 +191,7 @@ $app->post('/glucemia', function () use ($app) {
             'msg'   => 'Not logged',
         ));
 	}
-  $input = $app->request->getBody();
-  $glucemias = $input['glucemia'];
-	if(empty($glucemias)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'glucemia is required',
-        ));
-	}
+ 
 	$fecha = $input['fecha'];
 	if(empty($fecha)){
 		$app->render(500,array(
@@ -221,13 +214,12 @@ $app->post('/glucemia', function () use ($app) {
         ));
 	}
     $glucemias = new Glucemia();
-    $glucemias-> = $inmueble;
     $glucemias->fecha = $fecha;
     $glucemias->hora = $hora;
     $glucemias->medicion = $medicion;
 	$glucemias->idusuarios = $usuarios->id;
     $glucemias->save();
-    $app->render(200,array('data' => $glucemias->toArray()));
+    $app->render(200,array('data' => $glucemia->toArray()));
 });
 /*
 $app->post('/glucemia', function () use ($app) {
