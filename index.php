@@ -115,7 +115,7 @@ $app->get('/me', function () use ($app) {
 	$app->render(200,array('data' => $usuarios->toArray()));
 });
 
-$app->run();
+
 
 
 //crear
