@@ -121,6 +121,7 @@ $app->run();
 //crear
 
 $app->post('/usuarios', function () use ($app) {
+
   $input = $app->request->getBody();
 	$name = $input['name'];
 	if(empty($name)){
@@ -129,6 +130,7 @@ $app->post('/usuarios', function () use ($app) {
             'msg'   => 'name is required',
         ));
 	}
+
 	$password = $input['password'];
 	if(empty($password)){
 		$app->render(500,array(
@@ -136,6 +138,7 @@ $app->post('/usuarios', function () use ($app) {
             'msg'   => 'password is required',
         ));
 	}
+
 	$email = $input['email'];
 	if(empty($email)){
 		$app->render(500,array(
@@ -143,21 +146,16 @@ $app->post('/usuarios', function () use ($app) {
             'msg'   => 'email is required',
         ));
 	}
-	$tipo = $input['tipo'];
-	if(empty($tipo)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'Tipo is required',
-        ));
-	}
-    $usuarios = new User();
-    $usuarios->name = $name;
-    $usuarios->password = $password;
-    $usuarios->email = $email;
-    $usuarios->tipo = $tipo;
+
+	
+    $usuario = new User();
+    $usuario->name = $name;
+    $usuario->password = $password;
+    $usuario->email = $email;
+    
 
     $usuarios->save();
-    $app->render(200,array('data' => $user->toArray()));
+    $app->render(200,array('data' => $usuarios->toArray()));
 });
 
 
