@@ -160,7 +160,7 @@ $app->post('/usuarios', function () use ($app) {
 
 
 
-/*
+
 
 
 
@@ -185,15 +185,15 @@ $app->post('/glucemia', function () use ($app) {
 	}
 	$id_user_token = simple_decrypt($token, $app->enc_key);
 	$usuarios = User::find($id_user_token);
-	if(empty($)){
+	if(empty($usuarios)){
 		$app->render(500,array(
 			'error' => TRUE,
             'msg'   => 'Not logged',
         ));
 	}
   $input = $app->request->getBody();
-  $glucemia = $input['glucemia'];
-	if(empty($glucemia)){
+  $glucemias = $input['glucemia'];
+	if(empty($glucemias)){
 		$app->render(500,array(
 			'error' => TRUE,
             'msg'   => 'glucemia is required',
@@ -220,14 +220,14 @@ $app->post('/glucemia', function () use ($app) {
             'msg'   => 'medicion is required',
         ));
 	}
-    $glucemia = new Glucemia();
-    $glucemia-> = $inmueble;
-    $glucemia->fecha = $fecha;
-    $glucemia->hora = $hora;
-    $glucemia->medicion = $medicion;
-	$glucemia->idusuarios = $usuarios->id;
-    $glucemia->save();
-    $app->render(200,array('data' => $glucemia->toArray()));
+    $glucemias = new Glucemia();
+    $glucemias-> = $inmueble;
+    $glucemias->fecha = $fecha;
+    $glucemias->hora = $hora;
+    $glucemias->medicion = $medicion;
+	$glucemias->idusuarios = $usuarios->id;
+    $glucemias->save();
+    $app->render(200,array('data' => $glucemias->toArray()));
 });
 /*
 $app->post('/glucemia', function () use ($app) {
