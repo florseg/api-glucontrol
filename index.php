@@ -112,7 +112,7 @@ $app->get('/me', function () use ($app) {
             'msg'   => 'Not logged2',
         ));
 	}
-	$app->render(200,array('data' => $usuarios->toArray()));
+	$app->render(200,array('data' => $usuario->toArray()));
 });
 
 
