@@ -219,7 +219,7 @@ $app->post('/glucemia', function () use ($app) {
     $glucemias->medicion = $medicion;
 	$glucemias->idusuarios = $usuarios->id;
     $glucemias->save();
-    $app->render(200,array('data' => $glucemia->toArray()));
+    $app->render(200,array('data' => $glucemias->toArray()));
 });
 /*
 $app->post('/glucemia', function () use ($app) {
