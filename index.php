@@ -1,6 +1,7 @@
 <?php 
 require 'vendor/autoload.php';
 require 'Models/User.php';
+require 'Models/Glucemia.php';
 
 
 function simple_encrypt($text,$salt){  
@@ -118,7 +119,7 @@ $app->get('/me', function () use ($app) {
 
 
 
-//crear
+//crear usuario
 
 $app->post('/usuarios', function () use ($app) {
 
@@ -156,6 +157,58 @@ $app->post('/usuarios', function () use ($app) {
     $app->render(200,array('data' => $usuario->toArray()));
 });
 
-$app->run();
 
+
+
+
+
+
+
+//Conexion con la tabla glucemia
+
+$app->get('/glucemia', function () use ($app) {
+	$db = $app->db->getConnection();
+	$glucemia = $db->table('glucemia')->select('id', 'idusuarios', 'fecha', 'hora', 'medicion')->get();
+
+	$app->render(200,array('data' => $glucemia));
+});
+
+//Insertar Cotrol de Glucemia
+
+$app->post('/glucemia', function () use ($app) {
+
+  $input = $app->request->getBody();
+	$fecha = $input['fecha'];
+	if(empty($fecha)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'fecha is required',
+        ));
+	}
+	$hora = $input['hora'];
+	if(empty($hora)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'hora is required',
+        ));
+	}
+	$medicion = $input['medicion'];
+	if(empty($medicion)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'medicion is required',
+        ));
+	}
+
+	
+    $glucemia = new Glucemia();
+    $glucemia->fecha = $fecha;
+    $glucemia->hora = $hora;
+    $glucemia->medicion = $medicion;
+    $glucemia->save();
+    $app->render(200,array('data' => $glucemia->toArray()));
+});
+
+
+$app->run();
 ?>
