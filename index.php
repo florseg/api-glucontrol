@@ -152,8 +152,6 @@ $app->post('/usuarios', function () use ($app) {
     $usuario->name = $name;
     $usuario->password = $password;
     $usuario->email = $email;
-    
-
     $usuario->save();
     $app->render(200,array('data' => $usuario->toArray()));
 });
