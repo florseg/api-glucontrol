@@ -158,5 +158,6 @@ $app->post('/usuarios', function () use ($app) {
     $app->render(200,array('data' => $usuarios->toArray()));
 });
 
+$app->run();
 
 ?>
