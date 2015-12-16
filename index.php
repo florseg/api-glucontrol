@@ -175,7 +175,7 @@ $app->get('/glucemia', function () use ($app) {
 
 //Insertar Cotrol de Glucemia
 
-$app->post('/medicion', function () use ($app) {
+$app->post('/glucemia', function () use ($app) {
   $token = $app->request->headers->get('auth-token');
 	if(empty($token)){
 		$app->render(500,array(
@@ -184,7 +184,7 @@ $app->post('/medicion', function () use ($app) {
         ));
 	}
 	$id_user_token = simple_decrypt($token, $app->enc_key);
-	$usuario = User::find($id_user_token);
+	$usuarios = User::find($id_user_token);
 	if(empty($)){
 		$app->render(500,array(
 			'error' => TRUE,
@@ -225,7 +225,7 @@ $app->post('/medicion', function () use ($app) {
     $glucemia->fecha = $fecha;
     $glucemia->hora = $hora;
     $glucemia->medicion = $medicion;
-	$glucemia->idusuarios = $usuario->id;
+	$glucemia->idusuarios = $usuarios->id;
     $glucemia->save();
     $app->render(200,array('data' => $glucemia->toArray()));
 });
