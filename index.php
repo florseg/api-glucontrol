@@ -119,7 +119,7 @@ $app->run();
 
 
 //crear
-/*
+
 $app->post('/usuarios', function () use ($app) {
   $input = $app->request->getBody();
 	$name = $input['name'];
@@ -160,6 +160,5 @@ $app->post('/usuarios', function () use ($app) {
     $app->render(200,array('data' => $user->toArray()));
 });
 
-*/
 
 ?>
