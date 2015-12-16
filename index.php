@@ -173,8 +173,67 @@ $app->get('/glucemia', function () use ($app) {
 	$app->render(200,array('data' => $glucemia));
 });
 
-//Insertar Cotrol de Glucemia
+//Crear controles
+$app->post('/glucemia', function () use ($app) {
 
+	$token = $app->request->headers->get('auth-token');
+	$id_user_token = simple_decrypt($token, $app->enc_key);
+	$usuario = User::find($id_user_token);
+
+
+	$input = $app->request->getBody();
+	$fecha = $input['fecha'];
+	if(empty($fecha)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'fecha is required',
+        ));
+	}
+
+	$hora = $input['hora'];
+	if(empty($hora)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'hora is required',
+        ));
+	}
+
+		$medicion = $input['medicion'];
+	if(empty($medicion)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'medicion is required',
+        ));
+	}
+
+
+
+		$idusuarios = $usuario->id;
+	if(empty($idusuarios)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'email is required',
+        ));
+	}
+
+    $glucemia = new Glucemia();
+    $glucemia->idusuarios=$id_usuario;
+    $glucemia->fecha = $fecha;
+    $glucemia->hora = $hora;
+    $glucemia->medicion = $medicion;
+    $glucemia->save();
+    $app->render(200,array('data' => $glucemia->toArray()));
+});
+
+
+
+
+
+
+
+
+//Insertar Cotrol de Glucemia
+/*
 $app->post('/glucemia', function () use ($app) {
   $token = $app->request->headers->get('auth-token');
 	if(empty($token)){
@@ -221,7 +280,7 @@ $app->post('/glucemia', function () use ($app) {
     $glucemias->save();
     $app->render(200,array('data' => $glucemias->toArray()));
 });
-/*
+
 $app->post('/glucemia', function () use ($app) {
 
   $input = $app->request->getBody();
