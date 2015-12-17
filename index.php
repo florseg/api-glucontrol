@@ -184,8 +184,8 @@ $app->post('/glucemia', function () use ($app) {
         ));
 	}
 	$id_user_token = simple_decrypt($token, $app->enc_key);
-	$user = User::find($id_user_token);
-	if(empty($user)){
+	$usuario = User::find($id_user_token);
+	if(empty($usuario)){
 		$app->render(500,array(
 			'error' => TRUE,
             'msg'   => 'Not logged',
@@ -229,7 +229,7 @@ $app->post('/glucemia', function () use ($app) {
 	}
 
     $glucemia = new Glucemia();
-    $glucemia->idusuarios=$user->id;
+    $glucemia->idusuarios=$usuarios->id;
     $glucemia->fecha = $fecha;
     $glucemia->hora = $hora;
     $glucemia->medicion = $medicion;
