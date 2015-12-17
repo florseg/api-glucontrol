@@ -240,96 +240,7 @@ $app->post('/glucemia', function () use ($app) {
 
 
 
-
-
-
-
-//Insertar Cotrol de Glucemia
-/*
-$app->post('/glucemia', function () use ($app) {
-  $token = $app->request->headers->get('auth-token');
-	if(empty($token)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'Not logged',
-        ));
-	}
-	$id_user_token = simple_decrypt($token, $app->enc_key);
-	$usuarios = User::find($id_user_token);
-	if(empty($usuarios)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'Not logged',
-        ));
-	}
- 
-	$fecha = $input['fecha'];
-	if(empty($fecha)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'fecha is required',
-        ));
-	}
-	$hora = $input['hora'];
-	if(empty($hora)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'hora is required',
-        ));
-	}
-	$medicion = $input['medicion'];
-	if(empty($medicion)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'medicion is required',
-        ));
-	}
-    $glucemias = new Glucemia();
-    $glucemias->fecha = $fecha;
-    $glucemias->hora = $hora;
-    $glucemias->medicion = $medicion;
-	$glucemias->idusuarios = $usuarios->id;
-    $glucemias->save();
-    $app->render(200,array('data' => $glucemias->toArray()));
-});
-
-$app->post('/glucemia', function () use ($app) {
-
-  $input = $app->request->getBody();
-	$fecha = $input['fecha'];
-	if(empty($fecha)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'fecha is required',
-        ));
-	}
-	$hora = $input['hora'];
-	if(empty($hora)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'hora is required',
-        ));
-	}
-	$medicion = $input['medicion'];
-	if(empty($medicion)){
-		$app->render(500,array(
-			'error' => TRUE,
-            'msg'   => 'medicion is required',
-        ));
-	}
-
-	
-    $glucemia = new Glucemia();
-    $glucemia->fecha = $fecha;
-    $glucemia->hora = $hora;
-    $glucemia->medicion = $medicion;
-    $glucemia->save();
-    $app->render(200,array('data' => $glucemia->toArray()));
-});
-
-*/
-
-
+// Listado de control de glucemia 
 
 $app->get('/controles', function () use ($app) {
 
@@ -351,10 +262,14 @@ $app->get('/controles', function () use ($app) {
 		}
 
 	$db = $app->db->getConnection();
-	$users = $db->table('glucemia')->select('id', 'fecha', 'hora', 'medicion')->where('idusuario', $usuarios->id )->get();
+	$usuarios = $db->table('glucemia')->select('id', 'fecha', 'hora', 'medicion')->where('idusuario', $usuarios->id )->get();
 
 	$app->render(200,array('data' => $users));
 });
 
+
+
+
+//abajo de todo (cierra la api)
 $app->run();
 ?>
