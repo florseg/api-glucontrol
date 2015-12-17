@@ -184,7 +184,7 @@ $app->post('/glucemia', function () use ($app) {
         ));
 	}
 	$id_user_token = simple_decrypt($token, $app->enc_key);
-	$ = User::find($id_user_token);
+	$user = User::find($id_user_token);
 	if(empty($user)){
 		$app->render(500,array(
 			'error' => TRUE,
