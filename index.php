@@ -248,15 +248,15 @@ $app->get('/miscontroles', function () use ($app) {
 		if(empty($token)){
 			$app->render(500,array(
 				'error' => TRUE,
-				'msg'   => 'Not logged',
+				'msg'   => 'Not logged 1',
 			));
 		}
 		$id_user_token = simple_decrypt($token, $app->enc_key);
-		$glucemia = Glucemia::find($id_user_token);
+		$glucemia = User::find($id_user_token);
 		if(empty($glucemia)){
 			$app->render(500,array(
 				'error' => TRUE,
-				'msg'   => 'Not logged',
+				'msg'   => 'Not logged 2',
 			));
 		}
 		
