@@ -229,7 +229,7 @@ $app->post('/glucemia', function () use ($app) {
 	}
 
     $glucemia = new Glucemia();
-    $glucemia->idusuarios=$usuarios->id;
+    $glucemia->idusuarios=$usuario->id;
     $glucemia->fecha = $fecha;
     $glucemia->hora = $hora;
     $glucemia->medicion = $medicion;
