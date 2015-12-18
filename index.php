@@ -186,8 +186,6 @@ $app->get('/miscontroles/:id', function ($id) use ($app) {
 	}
 	$app->render(200,array('data' => $control->toArray()));
 });
-
-
 //Crear controles
 $app->post('/glucemia', function () use ($app) {
 
