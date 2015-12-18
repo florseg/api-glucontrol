@@ -241,7 +241,6 @@ $app->post('/glucemia', function () use ($app) {
 
 
 //Mostrar listado de control de glucemia 
-/*
 $app->get('/miscontroles', function () use ($app) {
 	
 		$token = $app->request->headers->get('auth-token');
@@ -266,7 +265,7 @@ $app->get('/miscontroles', function () use ($app) {
 });
 
 
-*/
+
 //Editar Anuncio
 
 $app->put('/glucemia/:id', function ($id) use ($app) {
