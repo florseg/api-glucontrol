@@ -279,7 +279,7 @@ $app->get('/miscontroles', function () use ($app) {
 
 
 
-//Editar Anuncio
+//Editar control
 
 $app->put('/glucemia/:id', function ($id) use ($app) {
   $input = $app->request->getBody();
@@ -318,7 +318,7 @@ $app->put('/glucemia/:id', function ($id) use ($app) {
     $glucemia->save();
     $app->render(200,array('data' => $glucemia->toArray()));
 });
-// Borrar Anuncio
+// Borrar control
 
 $app->delete('/glucemia/:id', function ($id) use ($app) {
 	$glucemia = Glucemia::find($id);
@@ -333,33 +333,6 @@ $app->delete('/glucemia/:id', function ($id) use ($app) {
 	$app->render(200);
 });
 
-//abajo de todo (cierra la 
-/*
-
-$app->get('/glucemia', function () use ($app) {
-	
-		$token = $app->request->headers->get('auth-token');
-		if(empty($token)){
-			$app->render(500,array(
-				'error' => TRUE,
-				'msg'   => 'Not logged',
-			));
-		}
-		$id_user_token = simple_decrypt($token, $app->enc_key);
-		$glucemia = Glucemia::find($id_user_token);
-		if(empty($glucemia)){
-			$app->render(500,array(
-				'error' => TRUE,
-				'msg'   => 'Not logged',
-			));
-		}
-		
-	$db = $app->db->getConnection();
-	$glucemia = $db->table('glucemia')->select('id', 'idusuarios', 'fecha', 'hora', 'medicion')->where('idusuarios', $glucemia->id)->get();
-	$app->render(200,array('data' => $anuncios));
-});
-
-*/
 
 $app->run();
 ?>
