@@ -265,7 +265,7 @@ $app->get('/miscontroles', function () use ($app) {
 	$app->render(200,array('data' => $glucemia));
 });
 
-
+/*
 //Editar Anuncio
 
 $app->put('/glucemia/:id', function ($id) use ($app) {
@@ -319,7 +319,7 @@ $app->delete('/glucemia/:id', function ($id) use ($app) {
 	$glucemia->delete();
 	$app->render(200);
 });
-
+*/
 //abajo de todo (cierra la api)
 $app->run();
 ?>
