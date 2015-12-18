@@ -173,6 +173,21 @@ $app->get('/glucemia', function () use ($app) {
 	$app->render(200,array('data' => $glucemia));
 });
 
+
+
+///Buscar control por id
+$app->get('/miscontroles/:id', function ($id) use ($app) {
+	$control= Glucemia::find($id);
+	if(empty($control)){
+		$app->render(404,array(
+			'error' => TRUE,
+            'msg'   => 'user not found',
+        ));
+	}
+	$app->render(200,array('data' => $control->toArray()));
+});
+
+
 //Crear controles
 $app->post('/glucemia', function () use ($app) {
 
