@@ -241,7 +241,7 @@ $app->post('/glucemia', function () use ($app) {
 
 
 //Mostrar listado de control de glucemia 
-
+/*
 $app->get('/miscontroles', function () use ($app) {
 	
 		$token = $app->request->headers->get('auth-token');
@@ -265,7 +265,8 @@ $app->get('/miscontroles', function () use ($app) {
 	$app->render(200,array('data' => $glucemia));
 });
 
-/*
+
+*/
 //Editar Anuncio
 
 $app->put('/glucemia/:id', function ($id) use ($app) {
@@ -319,7 +320,34 @@ $app->delete('/glucemia/:id', function ($id) use ($app) {
 	$glucemia->delete();
 	$app->render(200);
 });
-*/
-//abajo de todo (cierra la api)
+
+//abajo de todo (cierra la 
+
+
+$app->get('/glucemia', function () use ($app) {
+	
+		$token = $app->request->headers->get('auth-token');
+		if(empty($token)){
+			$app->render(500,array(
+				'error' => TRUE,
+				'msg'   => 'Not logged',
+			));
+		}
+		$id_user_token = simple_decrypt($token, $app->enc_key);
+		$glucemia = Glucemia::find($id_user_token);
+		if(empty($glucemia)){
+			$app->render(500,array(
+				'error' => TRUE,
+				'msg'   => 'Not logged',
+			));
+		}
+		
+	$db = $app->db->getConnection();
+	$glucemia = $db->table('glucemia')->select('id', 'idusuarios', 'fecha', 'hora', 'medicion')->where('idusuarios', $glucemia->id)->get();
+	$app->render(200,array('data' => $anuncios));
+});
+
+
+
 $app->run();
 ?>
