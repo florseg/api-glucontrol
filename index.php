@@ -266,8 +266,59 @@ $app->get('/miscontroles', function () use ($app) {
 });
 
 
+//Editar Anuncio
 
+$app->put('/glucemia/:id', function ($id) use ($app) {
+  $input = $app->request->getBody();
 
+	$fecha = $input['fecha'];
+	if(empty($fecha)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'name is required',
+        ));
+	}
+	$hora = $input['hora'];
+	if(empty($hora)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'password is required',
+        ));
+	}
+	$medicion = $input['medicion'];
+	if(empty($medicion)){
+		$app->render(500,array(
+			'error' => TRUE,
+            'msg'   => 'email is required',
+        ));
+	}
+	$glucemia = Glucemia::find($id);
+	if(empty($glucemia)){
+		$app->render(404,array(
+			'error' => TRUE,
+            'msg'   => 'user not found',
+        ));
+	}
+    $glucemia->fecha = $fecha;
+    $glucemia->hora = $hora;
+    $glucemia->medicion = $medicion;
+    $glucemia->save();
+    $app->render(200,array('data' => $glucemia->toArray()));
+});
+// Borrar Anuncio
+
+$app->delete('/glucemia/:id', function ($id) use ($app) {
+	$glucemia = Glucemia::find($id);
+	if(empty($glucemia)){
+		$app->render(404,array(
+			'error' => TRUE,
+            'msg'   => 'user not found',
+        ));
+	}
+
+	$glucemia->delete();
+	$app->render(200);
+});
 
 //abajo de todo (cierra la api)
 $app->run();
