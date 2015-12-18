@@ -321,7 +321,7 @@ $app->delete('/glucemia/:id', function ($id) use ($app) {
 });
 
 //abajo de todo (cierra la 
-
+/*
 
 $app->get('/glucemia', function () use ($app) {
 	
@@ -346,7 +346,7 @@ $app->get('/glucemia', function () use ($app) {
 	$app->render(200,array('data' => $anuncios));
 });
 
-
+*/
 
 $app->run();
 ?>
